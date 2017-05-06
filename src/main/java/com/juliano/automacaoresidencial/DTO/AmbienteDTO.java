@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PageHandlers;
+package com.juliano.automacaoresidencial.DTO;
 
 /**
  *
  * @author juliano
  */
-public class IndexHandler {
+public class AmbienteDTO {
     
 }
