@@ -25,7 +25,8 @@ public class CasaDAO extends BaseDAO{
             pstmt.execute();
             ResultSet rst = pstmt.executeQuery();
             rst.next();
-            dto.setNome(rst.getString("nome"));
+            dto.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("rua"), rst.getInt("numero"), rst.getString("complemento"));
+            //dto.setNome(rst.getString("nome"));
             con.close();
         } catch (Exception e) {
             e.printStackTrace();

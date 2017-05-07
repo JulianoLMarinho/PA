@@ -14,21 +14,21 @@ import com.juliano.automacaoresidencial.Objetos.Casa;
  */
 public class CasaDTO {
     CasaDAO house = new CasaDAO();
-       Casa casa[] = new Casa[1];
+       Casa casa = new Casa();
 
-    public Casa[] getCasa() {
+    public Casa getCasa() {
         this.carrega();
         return casa;
     }
 
-    public void setCasa(Casa[] casa) {
+    public void setCasa(Casa casa) {
         this.casa = casa;
     }
        
     void carrega(){
         Casa temp = new Casa();
         if(house.doRead(temp)){
-            this.casa[0] = temp;
+            this.casa = temp;
         };        
     }  
 }

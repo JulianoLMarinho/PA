@@ -16,6 +16,14 @@ public class Casa {
     private int numero;
     private String complemento;
 
+    public void setAll(int id, String nome, String rua, int numero, String complemento){
+        this.id = id;
+        this.nome = nome;
+        this.rua = rua;
+        this.numero = numero;
+        this.complemento = complemento;
+    }
+    
     public int getId() {
         return id;
     }

@@ -11,33 +11,32 @@
     </head>
     <body>        
         <div class="container">
-            <div class="row">
+            <jsp:useBean id="casaDao" class="com.juliano.automacaoresidencial.DTO.CasaDTO"/>
+            <div class="row">                
                 <div class="topo col-md-6 col-md-offset-3" style="border-radius: 4px 4px 0 0">
                     <h1 style="color: #FFFFFF"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></h1>
                 </div>
                 <div class="col-md-6 col-md-offset-3" style="text-align: center; border: 1px solid #ccc; border-radius: 0 0 4px 4px;">
                     <form style="margin-bottom: 20px;" method="GET" action="controller">
                         <input type="hidden"
-                                name="nomePageHandle"
-                                value="com.juliano.automacaoresidencial.PageHandlers.IndexHandle" />
+                               name="nomePageHandle"
+                               value="com.juliano.automacaoresidencial.PageHandlers.IndexHandle" />
                         <div class="form-group">
                             <label for="nomeCasa" style="font-size: 2.3em">Minha Casa</label>
-                            <input type="text" class="form-control" id="nomeCasa">
+                            <input type="text" class="form-control" id="nomeCasa" value="${casaDao.casa.nome}">
                         </div>
                         <div class="row" style="margin: 0">
                             <button class="btn btn-default col-md-4 .col-xs-6" type="submit" value="EditarCasa" name="botaoSubmit" style="float: left"><span class="glyphicon glyphicon-edit"></span>  Editar</button>
-                            <div class="btn btn-default col-md-4 .col-xs-6" onclick="test()" value="DetalhesCasa" style="float: right"><span class="glyphicon glyphicon-list-alt "></span>  Detalhes</div>
+                            <div class="btn btn-default col-md-4 .col-xs-6" value="DetalhesCasa" data-toggle="modal" data-target="#myModal" style="float: right"><span class="glyphicon glyphicon-list-alt "></span>  Detalhes</div>
                         </div>
                         <br>
                         <div class="form-group">
-                            <jsp:useBean id="dao" class="com.juliano.automacaoresidencial.DTO.CasaDTO"/>
-                            
+
+
                             <label for="ambienteCasa" style="font-size: 2.3em">Ambiente</label>
                             <select class="form-control" id="ambienteCasa">
                                 <option>Selecione o Ambiente</option>
-                                <c:forEach var="test" items="${dao.casa}">
-                                    <option>${test.nome}</option>
-                                </c:forEach>
+                                <option>${casaDao.casa.nome}</option>
                             </select>
                         </div>
                         <div class="row" style="margin: 0">
@@ -60,10 +59,51 @@
                             <button type="submit" class="btn btn-default col-md-4 .col-xs-6" style="float: right"><span class="glyphicon glyphicon-list-alt"></span>  Detalhes</button>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
-        </div>        
+        </div>  
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="text-align: center">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">${casaDao.casa.nome}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="rua">Rua:</label>
+                                <div class="col-sm-4">
+                                    <p class="form-control-static">${casaDao.casa.rua}</p>
+                                </div>     
+
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="numero">Número:</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">${casaDao.casa.numero}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="complemento">Complemento:</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">${casaDao.casa.complemento}</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="js/functions.js"></script>
