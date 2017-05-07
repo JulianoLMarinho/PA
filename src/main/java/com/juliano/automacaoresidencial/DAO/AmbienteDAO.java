@@ -5,8 +5,7 @@
  */
 package com.juliano.automacaoresidencial.DAO;
 
-import com.juliano.automacaoresidencial.DTO.CasaDTO;
-import com.juliano.automacaoresidencial.Objetos.Casa;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,17 +14,21 @@ import java.sql.ResultSet;
  *
  * @author juliano
  */
-public class CasaDAO extends BaseDAO{
-        public boolean doRead(Casa dto) {
+public class AmbienteDAO extends BaseDAO{
+    public boolean doRead(int id, String [] nome) {
         try {
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(
-               "SELECT * FROM \"casa\" WHERE id=?;");
+               "SELECT * FROM \"ambiente\" WHERE casa_id=?;");
             pstmt.setInt(1, 1);
             pstmt.execute();
             ResultSet rst = pstmt.executeQuery();
-            rst.next();
-            dto.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("rua"), rst.getInt("numero"), rst.getString("complemento"));
+            int i = 0;
+            while(rst.next()){
+                nome[i++]=rst.getString("nome");
+            }
+            System.out.println(nome);
+            //dto.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("rua"), rst.getInt("numero"), rst.getString("complemento"));
             //dto.setNome(rst.getString("nome"));
             con.close();
         } catch (Exception e) {

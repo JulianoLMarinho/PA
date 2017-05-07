@@ -12,6 +12,7 @@
     <body>        
         <div class="container">
             <jsp:useBean id="casaDao" class="com.juliano.automacaoresidencial.DTO.CasaDTO"/>
+            <jsp:useBean id="ambienteDTO" class="com.juliano.automacaoresidencial.DTO.AmbienteDTO"/>
             <div class="row">                
                 <div class="topo col-md-6 col-md-offset-3" style="border-radius: 4px 4px 0 0">
                     <h1 style="color: #FFFFFF"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></h1>
@@ -23,7 +24,7 @@
                                value="com.juliano.automacaoresidencial.PageHandlers.IndexHandle" />
                         <div class="form-group">
                             <label for="nomeCasa" style="font-size: 2.3em">Minha Casa</label>
-                            <input type="text" class="form-control" id="nomeCasa" value="${casaDao.casa.nome}">
+                            <input type="text" style="text-align: center" class="form-control" id="nomeCasa" value="${casaDao.casa.nome}" disabled>
                         </div>
                         <div class="row" style="margin: 0">
                             <button class="btn btn-default col-md-4 .col-xs-6" type="submit" value="EditarCasa" name="botaoSubmit" style="float: left"><span class="glyphicon glyphicon-edit"></span>  Editar</button>
@@ -36,7 +37,9 @@
                             <label for="ambienteCasa" style="font-size: 2.3em">Ambiente</label>
                             <select class="form-control" id="ambienteCasa">
                                 <option>Selecione o Ambiente</option>
-                                <option>${casaDao.casa.nome}</option>
+                                <c:forEach var="ambiente" items="${ambienteDTO.listaAmbiente}">
+                                    <option>${ambiente}</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="row" style="margin: 0">
