@@ -5,10 +5,30 @@
  */
 package com.juliano.automacaoresidencial.DTO;
 
+import com.juliano.automacaoresidencial.DAO.CasaDAO;
+import com.juliano.automacaoresidencial.Objetos.Casa;
+
 /**
  *
  * @author juliano
  */
 public class CasaDTO {
-    
+    CasaDAO house = new CasaDAO();
+       Casa casa[] = new Casa[1];
+
+    public Casa[] getCasa() {
+        this.carrega();
+        return casa;
+    }
+
+    public void setCasa(Casa[] casa) {
+        this.casa = casa;
+    }
+       
+    void carrega(){
+        Casa temp = new Casa();
+        if(house.doRead(temp)){
+            this.casa[0] = temp;
+        };        
+    }  
 }

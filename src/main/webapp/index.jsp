@@ -30,18 +30,14 @@
                         </div>
                         <br>
                         <div class="form-group">
-                            <jsp:useBean id="dao" class="com.juliano.automacaoresidencial.DAO.Teste"/>
+                            <jsp:useBean id="dao" class="com.juliano.automacaoresidencial.DTO.CasaDTO"/>
                             
                             <label for="ambienteCasa" style="font-size: 2.3em">Ambiente</label>
                             <select class="form-control" id="ambienteCasa">
-                                <c:forEach var="test" items="${dao.list}">
-                                    <option>${test}</option>
-                                </c:forEach>
                                 <option>Selecione o Ambiente</option>
-                                <option>Sala</option>
-                                <option>Quarto</option>
-                                <option>Banheiro</option>
-                                <option>Cozinha</option>
+                                <c:forEach var="test" items="${dao.casa}">
+                                    <option>${test.nome}</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="row" style="margin: 0">
