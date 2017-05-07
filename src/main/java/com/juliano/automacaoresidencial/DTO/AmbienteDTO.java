@@ -16,8 +16,8 @@ public class AmbienteDTO {
     AmbienteDAO ambientes = new AmbienteDAO();
     String [] listaAmbiente;
 
-    public String[] getListaAmbiente() {
-        this.carrega(1);
+    public String[] getListaAmbiente(int id) {
+        this.carrega(id);
         return listaAmbiente;
     }
 

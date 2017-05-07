@@ -27,7 +27,7 @@ public class AmbienteDAO extends BaseDAO{
             while(rst.next()){
                 nome[i++]=rst.getString("nome");
             }
-            System.out.println(nome);
+            //System.out.println(nome);
             //dto.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("rua"), rst.getInt("numero"), rst.getString("complemento"));
             //dto.setNome(rst.getString("nome"));
             con.close();
