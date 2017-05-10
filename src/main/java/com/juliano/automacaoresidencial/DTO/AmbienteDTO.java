@@ -6,7 +6,7 @@
 package com.juliano.automacaoresidencial.DTO;
 
 import com.juliano.automacaoresidencial.DAO.AmbienteDAO;
-import com.juliano.automacaoresidencial.DAO.CasaDAO;
+import com.juliano.automacaoresidencial.Objetos.Ambiente;
 
 /**
  *
@@ -14,20 +14,20 @@ import com.juliano.automacaoresidencial.DAO.CasaDAO;
  */
 public class AmbienteDTO {
     AmbienteDAO ambientes = new AmbienteDAO();
-    String [] listaAmbiente;
+    Ambiente [] listaAmbiente;
 
-    public String[] getListaAmbiente(int id) {
+    public Ambiente[] getListaAmbiente(int id) {
         this.carrega(id);
         return listaAmbiente;
     }
 
-    public void setListaAmbiente(String[] listaAmbiente) {
+    public void setListaAmbiente(Ambiente[] listaAmbiente) {
         this.listaAmbiente = listaAmbiente;
     }
     
     void carrega(int i){
-        String [] temp;
-        temp = new String[2];
+        Ambiente [] temp;
+        temp = new Ambiente[2];
         if (ambientes.doRead(i, temp)){
             this.listaAmbiente = temp;
         }

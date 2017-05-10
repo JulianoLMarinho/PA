@@ -46,4 +46,10 @@ public class Ambiente {
     public void setDetalhes(String detalhes) {
         this.detalhes = detalhes;
     }
+    
+    public void setAll(int id, String nome, String detalhes){
+        this.id = id;
+        this.nome = nome;
+        this.detalhes = detalhes;
+    }
 }

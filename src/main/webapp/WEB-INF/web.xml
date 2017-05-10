@@ -4,6 +4,10 @@
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    <listener>
+        <description>HttpSessionListener</description>
+        <listener-class>com.juliano.automacaoresidencial.Core.IniciadorDeSessao</listener-class>
+    </listener>
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.juliano.automacaoresidencial.Core.Controller</servlet-class>

@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-function test(){
-    console.log("Teste do Javascript");
+function test(n){
+    alert(n);
 }
 
 

@@ -5,6 +5,7 @@
  */
 package com.juliano.automacaoresidencial.DAO;
 
+import com.juliano.automacaoresidencial.Objetos.Ambiente;
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.sql.ResultSet;
  * @author juliano
  */
 public class AmbienteDAO extends BaseDAO{
-    public boolean doRead(int id, String [] nome) {
+    public boolean doRead(int id, Ambiente [] nome) {
         try {
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(
@@ -25,7 +26,9 @@ public class AmbienteDAO extends BaseDAO{
             ResultSet rst = pstmt.executeQuery();
             int i = 0;
             while(rst.next()){
-                nome[i++]=rst.getString("nome");
+                Ambiente temp = new Ambiente();
+                temp.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("detalhes"));
+                nome[i++]=temp;
             }
             //System.out.println(nome);
             //dto.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("rua"), rst.getInt("numero"), rst.getString("complemento"));
