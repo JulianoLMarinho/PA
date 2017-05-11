@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 
-function test(n){
-    alert(n);
+function ambienteSubmit(n){     
+     $('<input />').attr('type', 'hidden')
+              .attr('name', 'botaoSubmitAmbienteId')
+              .attr('value', n)
+              .appendTo('#formPrincipal');
+$('#formPrincipal').submit();
 }
 
 

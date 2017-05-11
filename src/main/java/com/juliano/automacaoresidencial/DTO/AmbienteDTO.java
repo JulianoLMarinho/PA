@@ -14,6 +14,19 @@ import com.juliano.automacaoresidencial.Objetos.Ambiente;
  */
 public class AmbienteDTO {
     AmbienteDAO ambientes = new AmbienteDAO();
+    Ambiente ambienteSelecionado = new Ambiente();
+
+    public Ambiente getAmbienteSelecionado(int id) {
+        if(ambientes.doRead(id, ambienteSelecionado)){
+            return ambienteSelecionado;
+        };
+        return ambienteSelecionado;
+    }
+
+    public void setAmbienteSelecionado(Ambiente ambienteSelecionado) {
+        this.ambienteSelecionado = ambienteSelecionado;
+    }
+    
     Ambiente [] listaAmbiente;
 
     public Ambiente[] getListaAmbiente(int id) {
@@ -28,7 +41,7 @@ public class AmbienteDTO {
     void carrega(int i){
         Ambiente [] temp;
         temp = new Ambiente[2];
-        if (ambientes.doRead(i, temp)){
+        if (ambientes.doReadList(i, temp)){
             this.listaAmbiente = temp;
         }
     }

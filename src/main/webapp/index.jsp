@@ -13,12 +13,13 @@
         <div class="container">
             <jsp:useBean id="casaDao" class="com.juliano.automacaoresidencial.DTO.CasaDTO"/>
             <jsp:useBean id="ambienteDTO" class="com.juliano.automacaoresidencial.DTO.AmbienteDTO"/>
+            <jsp:useBean id="test" class="com.juliano.automacaoresidencial.PageHandlers.IndexHandle"/>
             <div class="row">                
                 <div class="topo col-md-6 col-md-offset-3" style="border-radius: 4px 4px 0 0">
                     <h1 style="color: #FFFFFF"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></h1>
                 </div>
                 <div class="col-md-6 col-md-offset-3" style="text-align: center; border: 1px solid #ccc; border-radius: 0 0 4px 4px;">
-                    <form style="margin-bottom: 20px;" method="GET" action="controller">
+                    <form style="margin-bottom: 20px;" id="formPrincipal" method="GET" action="controller">
                         <input type="hidden"
                                name="nomePageHandle"
                                value="com.juliano.automacaoresidencial.PageHandlers.IndexHandle" />
@@ -35,13 +36,14 @@
                             <label for="ambienteCasa" style="font-size: 2.3em">Ambiente</label>
                             <div class="dropdown">
                                 <button class="btn btn-default col-xs-12 col-sm-12 col-md-12 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin: 0 0 15px 0">
-                                    Selecione o Ambiente
+                                    ${sessionScope.selecAmb}
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu col-xs-12 col-sm-12 col-md-12" aria-labelledby="dropdownAmbiente">
+                                    <li><a href="#" onclick="ambienteSubmit('sAmbiente')">Selecione o Ambiente</a></li>
                                     <c:forEach var="ambiente" items="${ambienteDTO.getListaAmbiente(casaDao.casa.id)}">
-                                        <li><a href="#">${ambiente.nome}</a></li>
-                                        </c:forEach>
+                                        <li><a href="#" onclick="ambienteSubmit('${ambiente.id}')">${ambiente.nome}</a></li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>
