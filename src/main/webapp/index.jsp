@@ -14,6 +14,7 @@
             <jsp:useBean id="casaDao" class="com.juliano.automacaoresidencial.DTO.CasaDTO"/>
             <jsp:useBean id="ambienteDTO" class="com.juliano.automacaoresidencial.DTO.AmbienteDTO"/>
             <jsp:useBean id="test" class="com.juliano.automacaoresidencial.PageHandlers.IndexHandle"/>
+            <jsp:useBean id="dispositivoDTO" class="com.juliano.automacaoresidencial.DTO.DispositivoDTO"/>
             <div class="row">                
                 <div class="topo col-md-6 col-md-offset-3" style="border-radius: 4px 4px 0 0">
                     <h1 style="color: #FFFFFF"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></h1>
@@ -28,7 +29,7 @@
                             <input type="text" style="text-align: center" class="form-control" id="nomeCasa" value="${casaDao.casa.nome}" disabled>
                         </div>
                         <div class="row" style="margin: 0">
-                            <button class="btn btn-default col-md-6 col-xs-6" type="submit" value="EditarCasa" name="botaoSubmit" style="float: left"><span class="glyphicon glyphicon-edit"></span>  Editar</button>
+                            <button class="btn btn-default col-md-6 col-xs-6" type="submit" value="EditarCasa" name="botaoSubmit" style="float: left; background-color: ${sessionScope.COR}"><span class="glyphicon glyphicon-edit"></span>  Editar</button>
                             <div class="btn btn-default col-md-6 .col-xs-6" value="DetalhesCasa" data-toggle="modal" data-target="#myModal" style="float: right"><span class="glyphicon glyphicon-list-alt "></span>  Detalhes</div>
                         </div>
                         <br>
@@ -54,13 +55,18 @@
                         <br>
                         <div class="form-group">
                             <label for="dispositivoAmbiente" style="font-size: 2.3em">Dispositivos</label>
-                            <select class="form-control" id="dispositivoAmbiente" ${sessionScope.disableDesp}>
-                                <option>Selecione o Dispositivo</option>
-                                <option>Lâmpada</option>
-                                <option>Ventilador</option>
-                                <option>Ar Condicionado</option>
-                                <option>Televisão</option>
-                            </select>
+                            <div class="dropdown" >
+                                <button class="btn btn-default col-xs-12 col-sm-12 col-md-12 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin: 0 0 15px 0" ${sessionScope.disableDesp}>
+                                    Selecione o Dispositivo
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu col-xs-12 col-sm-12 col-md-12" aria-labelledby="dropdownDispositivo">
+                                    <li><a href="#" onclick="ambienteSubmit('sAmbiente')">Selecione o Ambiente</a></li>
+                                    <c:forEach var="dispositivo" items="${dispositivoDTO.getListaDispositivo(sessionScope.idSelecAmb)}">
+                                        <li><a href="#">${dispositivo.nome}</a></li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
                         </div>
                         <div class="row" style="margin: 0">
                             <button class="btn btn-default col-md-4 .col-xs-6" style="float: left" ${sessionScope.disableDesp}><span class="glyphicon glyphicon-plus"></span>  Adicionar Dispositivo</button>

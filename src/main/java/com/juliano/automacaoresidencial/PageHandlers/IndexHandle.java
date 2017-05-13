@@ -45,6 +45,7 @@ public class IndexHandle implements IFTratadorDePaginas{
                 default:
                     Ambiente amb = new Ambiente();
                     amb = ambiente.getAmbienteSelecionado(Integer.parseInt(botaoAmbienteId));
+                    request.getSession().setAttribute("idSelecAmb", amb.getId());
                     request.getSession().setAttribute("selecAmb", amb.getNome());
                     System.out.println(ambiente.getAmbienteSelecionado(Integer.parseInt(botaoAmbienteId)).getNome());
                     request.getSession().setAttribute("disableDesp", "activate");

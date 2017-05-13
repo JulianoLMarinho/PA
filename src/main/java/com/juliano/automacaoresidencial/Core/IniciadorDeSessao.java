@@ -11,6 +11,8 @@ public class IniciadorDeSessao implements HttpSessionListener {
         se.getSession().setAttribute("disableDispDet", "disabled");
         se.getSession().setAttribute("disableDesp", "disabled");
         se.getSession().setAttribute("selecAmb", "Selecione o Ambiente");
+        se.getSession().setAttribute("idSelecAmb", "0");
+        se.getSession().setAttribute("COR", "red");
     }
 
     @Override
