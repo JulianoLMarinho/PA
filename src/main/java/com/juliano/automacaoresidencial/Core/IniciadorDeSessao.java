@@ -9,10 +9,10 @@ public class IniciadorDeSessao implements HttpSessionListener {
     public void sessionCreated(HttpSessionEvent se) {
         se.getSession().setAttribute("disableAmbDet", "disabled");
         se.getSession().setAttribute("disableDispDet", "disabled");
-        se.getSession().setAttribute("disableDesp", "disabled");
+        se.getSession().setAttribute("disableDisp", "disabled");
         se.getSession().setAttribute("selecAmb", "Selecione o Ambiente");
+        se.getSession().setAttribute("selecDisp", "Selecione o Dispositivo");
         se.getSession().setAttribute("idSelecAmb", "0");
-        se.getSession().setAttribute("COR", "red");
     }
 
     @Override

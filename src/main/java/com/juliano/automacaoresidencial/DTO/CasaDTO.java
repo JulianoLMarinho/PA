@@ -24,7 +24,14 @@ public class CasaDTO {
     public void setCasa(Casa casa) {
         this.casa = casa;
     }
-       
+    
+    public boolean atualizaCasa(Casa casa){
+        if(house.doUpdate(casa)){
+            setCasa(casa);
+            return true; 
+        } else return false;
+    }
+    
     void carrega(){
         Casa temp = new Casa();
         if(house.doRead(temp)){

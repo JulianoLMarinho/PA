@@ -7,6 +7,8 @@ package com.juliano.automacaoresidencial.DTO;
 
 import com.juliano.automacaoresidencial.DAO.AmbienteDAO;
 import com.juliano.automacaoresidencial.Objetos.Ambiente;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,7 +21,7 @@ public class AmbienteDTO {
     public Ambiente getAmbienteSelecionado(int id) {
         if(ambientes.doRead(id, ambienteSelecionado)){
             return ambienteSelecionado;
-        };
+        }
         return ambienteSelecionado;
     }
 
@@ -27,20 +29,19 @@ public class AmbienteDTO {
         this.ambienteSelecionado = ambienteSelecionado;
     }
     
-    Ambiente [] listaAmbiente;
+    List<Ambiente> listaAmbiente;
 
-    public Ambiente[] getListaAmbiente(int id) {
+    public List<Ambiente> getListaAmbiente(int id) {
         this.carrega(id);
         return listaAmbiente;
     }
 
-    public void setListaAmbiente(Ambiente[] listaAmbiente) {
+    public void setListaAmbiente(List<Ambiente> listaAmbiente) {
         this.listaAmbiente = listaAmbiente;
     }
     
     void carrega(int i){
-        Ambiente [] temp;
-        temp = new Ambiente[2];
+        List<Ambiente> temp = new ArrayList<>();
         if (ambientes.doReadList(i, temp)){
             this.listaAmbiente = temp;
         }

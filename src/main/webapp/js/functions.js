@@ -4,12 +4,21 @@
  * and open the template in the editor.
  */
 
-function ambienteSubmit(n){     
-     $('<input />').attr('type', 'hidden')
-              .attr('name', 'botaoSubmitAmbienteId')
-              .attr('value', n)
-              .appendTo('#formPrincipal');
-$('#formPrincipal').submit();
-}
+function ambienteSubmit(n) {
+    console.log("uiuiuiu");
+    $('<input />').attr('type', 'hidden')
+            .attr('name', 'botaoSubmitAmbienteId')
+            .attr('value', n)
+            .appendTo('#formPrincipal');
+    $('#formPrincipal').submit();
+};
+
+function dispositivoSubmit(n) {
+    $('<input />').attr('type', 'hidden')
+            .attr('name', 'botaoSubmitDispositivoId')
+            .attr('value', n)
+            .appendTo('#formPrincipal');
+    $('#formPrincipal').submit();
+};
 
 

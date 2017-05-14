@@ -7,27 +7,36 @@ package com.juliano.automacaoresidencial.DTO;
 
 import com.juliano.automacaoresidencial.DAO.DispositivoDAO;
 import com.juliano.automacaoresidencial.Objetos.Dispositivo;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author juliano
  */
 public class DispositivoDTO {
-    Dispositivo [] listaDispositivo;
+    List<Dispositivo> listaDispositivo;
     DispositivoDAO dispositivos = new DispositivoDAO();
+    Dispositivo dispositivoSelecionado = new Dispositivo();
 
-    public Dispositivo[] getListaDispositivo(int id) {
+    public Dispositivo getDispositivoSelecionado(int id){
+        if(dispositivos.doRead(id, dispositivoSelecionado)){
+            return dispositivoSelecionado;
+        }
+        return dispositivoSelecionado;
+    }
+    
+    public List<Dispositivo> getListaDispositivo(int id) {
         this.carrega(id);
         return listaDispositivo;
     }
 
-    public void setListaDispositivo(Dispositivo[] listaDispositivo) {
+    public void setListaDispositivo(List<Dispositivo> listaDispositivo) {
         this.listaDispositivo = listaDispositivo;
     }
     
     void carrega(int i){
-        Dispositivo [] temp;
-        temp = new Dispositivo[2];
+        List<Dispositivo > temp = new ArrayList<>();
         if (dispositivos.doReadList(i, temp)){
             this.listaDispositivo = temp;
         }
