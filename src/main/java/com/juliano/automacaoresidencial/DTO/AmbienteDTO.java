@@ -16,8 +16,17 @@ import java.util.List;
  */
 public class AmbienteDTO {
     AmbienteDAO ambientes = new AmbienteDAO();
-    Ambiente ambienteSelecionado = new Ambiente();
+    Ambiente ambienteSelecionado = new Ambiente();    
+    List<Ambiente> listaAmbiente;
 
+    public boolean inserirAmbiente(Ambiente novoAmbiente){
+        if(ambientes.doCreate(novoAmbiente)){
+            setAmbienteSelecionado(ambienteSelecionado);
+            return true;
+        }
+        return false;
+    }
+    
     public Ambiente getAmbienteSelecionado(int id) {
         if(ambientes.doRead(id, ambienteSelecionado)){
             return ambienteSelecionado;
@@ -28,8 +37,6 @@ public class AmbienteDTO {
     public void setAmbienteSelecionado(Ambiente ambienteSelecionado) {
         this.ambienteSelecionado = ambienteSelecionado;
     }
-    
-    List<Ambiente> listaAmbiente;
 
     public List<Ambiente> getListaAmbiente(int id) {
         this.carrega(id);
@@ -45,5 +52,9 @@ public class AmbienteDTO {
         if (ambientes.doReadList(i, temp)){
             this.listaAmbiente = temp;
         }
+    }
+    
+    public boolean excluirPorAmbiente(int id_ambiente){
+        return ambientes.doDeletebyAmb(id_ambiente);
     }
 }

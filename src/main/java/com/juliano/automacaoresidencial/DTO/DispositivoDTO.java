@@ -19,6 +19,18 @@ public class DispositivoDTO {
     DispositivoDAO dispositivos = new DispositivoDAO();
     Dispositivo dispositivoSelecionado = new Dispositivo();
 
+    public boolean inserirDispositivo(Dispositivo novoDispositivo){
+        if(dispositivos.doCreate(novoDispositivo)){
+            setDispositivoSelecionado(dispositivoSelecionado);
+            return true;
+        }
+        return false;
+    }
+    
+    public void setDispositivoSelecionado(Dispositivo dispositivoSelecionado) {
+        this.dispositivoSelecionado = dispositivoSelecionado;
+    }    
+    
     public Dispositivo getDispositivoSelecionado(int id){
         if(dispositivos.doRead(id, dispositivoSelecionado)){
             return dispositivoSelecionado;
@@ -40,5 +52,13 @@ public class DispositivoDTO {
         if (dispositivos.doReadList(i, temp)){
             this.listaDispositivo = temp;
         }
+    }
+    
+    public boolean excluirPorAmbiente(int id_ambiente){
+        return dispositivos.doDeletebyAmb(id_ambiente);
+    }
+    
+    public boolean excluir(int id){
+        return dispositivos.doDelete(id);
     }
 }

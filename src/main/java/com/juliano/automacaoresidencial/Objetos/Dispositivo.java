@@ -43,5 +43,10 @@ public class Dispositivo {
         this.nome = nome;
         this.id_ambiente = id_ambiente;
     }
+    
+    public void setAll(String nome, int id_ambiente){
+        this.nome = nome;
+        this.id_ambiente = id_ambiente;
+    }
 }
 

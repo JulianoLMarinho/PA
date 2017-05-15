@@ -13,6 +13,7 @@ public class IniciadorDeSessao implements HttpSessionListener {
         se.getSession().setAttribute("selecAmb", "Selecione o Ambiente");
         se.getSession().setAttribute("selecDisp", "Selecione o Dispositivo");
         se.getSession().setAttribute("idSelecAmb", "0");
+        se.getSession().setAttribute("selecIdDisp", 0);
     }
 
     @Override

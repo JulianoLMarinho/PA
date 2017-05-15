@@ -16,6 +16,25 @@ import java.util.List;
  * @author juliano
  */
 public class DispositivoDAO extends BaseDAO{
+    
+    public boolean doCreate(Dispositivo novoDispositivo) {
+        try {
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(
+               "INSERT INTO \"dispositivo\" (\"nome\", \"id_ambiente\") VALUES (?, ?) RETURNING \"id\"");
+            pstmt.setString(1, novoDispositivo.getNome());
+            pstmt.setInt(2, novoDispositivo.getId_ambiente());
+            ResultSet rst = pstmt.executeQuery();
+            rst.next();
+            novoDispositivo.setId(rst.getInt("id"));
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
     public boolean doReadList(int id, List<Dispositivo> nome) {
         try {
             Connection con = getConnection();
@@ -51,6 +70,36 @@ public class DispositivoDAO extends BaseDAO{
             ResultSet rst = pstmt.executeQuery();
             rst.next();
             dispositivoSelecionado.setAll(rst.getInt("id"), rst.getString("nome"), rst.getInt("id_ambiente"));
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean doDeletebyAmb(int id_ambiente){
+        try {
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(
+               "DELETE FROM \"dispositivo\" WHERE \"id_ambiente\"=?;");
+            pstmt.setInt(1, id_ambiente);
+            pstmt.execute();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean doDelete(int id){
+        try {
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(
+               "DELETE FROM \"dispositivo\" WHERE \"id\"=?;");
+            pstmt.setInt(1, id);
+            pstmt.execute();
             con.close();
         } catch (Exception e) {
             e.printStackTrace();

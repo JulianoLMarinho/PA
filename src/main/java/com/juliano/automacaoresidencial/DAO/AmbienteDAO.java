@@ -16,24 +16,42 @@ import java.util.List;
  * @author juliano
  */
 public class AmbienteDAO extends BaseDAO{
-    public boolean doRead(int id, Ambiente ambienteSelecionado) {
+    
+    public boolean doCreate(Ambiente novoAmbiente) {
         try {
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(
-               "SELECT * FROM \"ambiente\" WHERE id=?;");
-            pstmt.setInt(1, id);
-            pstmt.execute();
+               "INSERT INTO \"ambiente\" (\"casa_id\", \"nome\", \"detalhes\") VALUES(?, ?, ?) RETURNING id");
+            pstmt.setInt(1, Integer.parseInt("1"));
+            pstmt.setString(2, novoAmbiente.getNome());
+            pstmt.setString(3, novoAmbiente.getDetalhes());
             ResultSet rst = pstmt.executeQuery();
-            int i = 0;
             rst.next();
-            //Ambiente temp = new Ambiente();
-            ambienteSelecionado.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("detalhes"));
-            
-            
-            //System.out.println(nome);
-            //dto.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("rua"), rst.getInt("numero"), rst.getString("complemento"));
-            //dto.setNome(rst.getString("nome"));
+            novoAmbiente.setId(rst.getInt("id"));
             con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean doRead(int id, Ambiente ambienteSelecionado) {
+        try {
+            try (Connection con = getConnection()) {
+                PreparedStatement pstmt = con.prepareStatement(
+                        "SELECT * FROM \"ambiente\" WHERE id=?;");
+                pstmt.setInt(1, id);
+                pstmt.execute();
+                ResultSet rst = pstmt.executeQuery();
+                int i = 0;
+                rst.next();
+                //Ambiente temp = new Ambiente();
+                ambienteSelecionado.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("detalhes"), rst.getInt("casa_id"));
+                //System.out.println(nome);
+                //dto.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("rua"), rst.getInt("numero"), rst.getString("complemento"));
+                //dto.setNome(rst.getString("nome"));
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -53,12 +71,27 @@ public class AmbienteDAO extends BaseDAO{
             int i = 0;
             while(rst.next()){
                 Ambiente temp = new Ambiente();
-                temp.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("detalhes"));
+                temp.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("detalhes"), rst.getInt("casa_id"));
                 nome.add(temp);
             }
             //System.out.println(nome);
             //dto.setAll(rst.getInt("id"), rst.getString("nome"), rst.getString("rua"), rst.getInt("numero"), rst.getString("complemento"));
             //dto.setNome(rst.getString("nome"));
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean doDeletebyAmb(int id_ambiente){
+        try {
+            Connection con = getConnection();
+            PreparedStatement pstmt = con.prepareStatement(
+               "DELETE FROM \"ambiente\" WHERE \"id\"=?;");
+            pstmt.setInt(1, id_ambiente);
+            pstmt.execute();
             con.close();
         } catch (Exception e) {
             e.printStackTrace();

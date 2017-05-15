@@ -5,7 +5,6 @@
  */
 
 function ambienteSubmit(n) {
-    console.log("uiuiuiu");
     $('<input />').attr('type', 'hidden')
             .attr('name', 'botaoSubmitAmbienteId')
             .attr('value', n)
