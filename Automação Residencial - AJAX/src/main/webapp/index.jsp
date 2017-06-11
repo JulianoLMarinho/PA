@@ -17,9 +17,6 @@
                 </div>
                 <div class="col-md-6 col-md-offset-3" style="text-align: center; border: 1px solid #ccc; border-radius: 0 0 4px 4px;">
                     <div style="margin-bottom: 20px;" id="formPrincipal">
-                        <input type="hidden"
-                               name="nomePageHandle"
-                               value="com.juliano.automacaoresidencial.PageHandlers.IndexHandle" />
                         <div class="form-group">
                             <label for="nomeCasa" style="font-size: 2.3em">Minha Casa</label>
                             <input type="text" style="text-align: center" class="form-control" name="nomeCasa" id="nomeCasa" value="" disabled>
@@ -31,38 +28,25 @@
                         <br>
                         <div class="form-group">
                             <label for="ambienteCasa" style="font-size: 2.3em">Ambiente</label>
-                            <div class="dropdown">
-                                <button class="btn btn-default col-xs-12 col-sm-12 col-md-12 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin: 0 0 15px 0">
-                                    Selecione o Ambiente
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu col-xs-12 col-sm-12 col-md-12" aria-labelledby="dropdownAmbiente">
-                                    <li><a href="#" onclick="ambienteSubmit('sAmbiente')">Selecione o Ambiente</a></li>
-                                        <li><a href="#" onclick="ambienteSubmit('2')">Quarto</a></li>
-                                </ul>
-                            </div>
+                            <select class="form-control" id="listAmbientes" style="text-align: center">
+                                <option value="0">Selecione o Ambiente</option>
+                            </select>                           
                         </div>
                         <div class="row" style="margin: 0">
                             <div class="btn btn-default col-md-6 .col-xs-6" data-toggle="modal" data-target="#ModalAdcAmbiente" style="float: left"><span class="glyphicon glyphicon-plus"></span>  Adicionar Ambiente</div>
-                            <div class="btn btn-default col-md-6 .col-xs-6" value="DetalhesAmbiente" data-toggle="modal" data-target="#ModalDetAmbiente" style="float: right" ${sessionScope.disableAmbDet}><span class="glyphicon glyphicon-list-alt "></span>  Detalhes</div>
+                            <div class="btn btn-default col-md-6 .col-xs-6 disabled" value="DetalhesAmbiente" data-toggle="modal" id="buttonDetAmb" data-target="#ModalDetAmbiente" style="float: right"><span class="glyphicon glyphicon-list-alt "></span> Detalhes</div>
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="dispositivoAmbiente" style="font-size: 2.3em">Dispositivos</label>
-                            <div class="dropdown" >
-                                <button class="btn btn-default col-xs-12 col-sm-12 col-md-12 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin: 0 0 15px 0" ${sessionScope.disableDisp}>
-                                    Selecione o Dispositivo
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu col-xs-12 col-sm-12 col-md-12" aria-labelledby="dropdownDispositivo">
-                                    <li><a href="#" onclick="dispositivoSubmit('sDispositivo')">Selecione o Dispositivo</a></li>
-                                        <li><a href="#" onclick="dispositivoSubmit('8')">TV/a></li>
-                                </ul>
-                            </div>
+                            <select class="form-control disabled" id="listDispositivos">
+                                <option value="0">Selecione o Dispositivo</option>
+                            </select>
                         </div>
                         <div class="row" style="margin: 0">
-                            <div class="btn btn-default col-md-6 .col-xs-6" data-toggle="modal" data-target="#ModalAdcDispositivo" style="float: left"><span class="glyphicon glyphicon-plus"></span>  Adicionar Dispositivo</div>
-                            <div class="btn btn-default col-md-6 .col-xs-6" data-toggle="modal" data-target="#ModalDetDispositivo" ${sessionScope.disableDispDet}><span class="glyphicon glyphicon-list-alt"></span>  Detalhes</div>
+                            <div class="btn btn-default col-md-4 .col-xs-4 disabled disabled" data-toggle="modal" id="buttonAddDisp" data-target="#ModalAdcDispositivo" style="float: left"><span class="glyphicon glyphicon-plus"></span>  Adicionar Dispositivo</div>
+                            <div class="btn btn-default col-md-4 .col-xs-4 disabled disabled" data-toggle="modal" id="buttonContDisp" data-target="#ModalContDispositivo"><span class="glyphicon glyphicon-list-alt"></span>  Controlar</div>
+                            <div class="btn btn-default col-md-4 .col-xs-4 disabled disabled" data-toggle="modal" id="buttonDetDisp" data-target="#ModalDetDispositivo"><span class="glyphicon glyphicon-list-alt"></span>  Detalhes</div>
                         </div>
                     </div>
                 </div>
@@ -81,21 +65,21 @@
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <label for="nomeCasa" style="font-size: 1.5em">Nome:</label>
-                                <input type="text" style="text-align: center" class="form-control" id="nomeCasa" value="Casa" disabled>
+                                <input type="text" style="text-align: center" class="form-control" name="nomeCasa" id="nomeCasa" value="" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="ruaCasa" style="font-size: 1.5em">Rua:</label>
-                                <input type="text" style="text-align: center" class="form-control" id="ruaCasa" value="AX" disabled>
+                                <input type="text" style="text-align: center" class="form-control" name="ruaCasa" id="ruaCasa" value="" disabled>
                             </div>
 
                             <div class="form-group">
                                 <label for="numeroCasa" style="font-size: 1.5em">Número:</label>
-                                <input type="text" style="text-align: center" class="form-control" id="numeroCasa" value="9" disabled>                                   
+                                <input type="text" style="text-align: center" class="form-control" name="numeroCasa" id="numeroCasa" value="" disabled>                                   
                             </div>
 
                             <div class="form-group">
                                 <label for="complementoCasa" style="font-size: 1.5em">Complemento:</label>
-                                <input type="text" style="text-align: center" class="form-control" id="complementooCasa" value="SEM" disabled>
+                                <input type="text" style="text-align: center" class="form-control" name="complementoCasa" id="complementoCasa" value="" disabled>
                             </div>
                         </form>
                         <div class="modal-footer">
@@ -115,35 +99,32 @@
                         <h4 class="modal-title">Editar Casa</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" id="formEditCasa" method="POST" action="controller">
-                            <input type="hidden"
-                                   name="nomePageHandle"
-                                   value="com.juliano.automacaoresidencial.PageHandlers.IndexHandle" />
+                        <div class="form-horizontal" id="formEditCasa">          
 
                             <input type="hidden" name="nomeIdCasa" value="5"/>
 
                             <div class="form-group">
                                 <label for="nomeCasa" style="font-size: 1.5em">Nome:</label>                                                
-                                <input type="text" style="text-align: center" class="form-control" id="nomeCasa" name="nomeCasa" value="Casa" required="true"/>
+                                <input type="text" style="text-align: center" class="form-control" id="nomeEditCasa" name="nomeCasa" value="" required="true"/>
                             </div>
                             <div class="form-group">
                                 <label for="ruaCasa" style="font-size: 1.5em">Rua:</label>
-                                <input type="text" style="text-align: center" class="form-control" id="ruaCasa" name="nomeRua" value="AX">
+                                <input type="text" style="text-align: center" class="form-control" id="ruaEditCasa" name="ruaCasa" value="">
                             </div>
 
                             <div class="form-group">
                                 <label for="numeroCasa" style="font-size: 1.5em">Número:</label>
-                                <input type="text" style="text-align: center" class="form-control" id="numeroCasa" name="nomeNumero" value="9">                                   
+                                <input type="text" style="text-align: center" class="form-control" id="numeroEditCasa" name="numeroCasa" value="">                                   
                             </div>
 
                             <div class="form-group">
                                 <label for="complementoCasa" style="font-size: 1.5em">Complemento:</label>
-                                <input type="text" style="text-align: center" class="form-control" id="complementoCasa" name="nomeComplemento" value="">
+                                <input type="text" style="text-align: center" class="form-control" id="complementoEditCasa" name="complementoCasa" value="">
                             </div>
-                        </form>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Cancelar</button>
-                            <button type="submit" class="btn btn-default" form="formEditCasa" name="submitModal" value="EditarCasa">Salvar</button>
+                            <button class="btn btn-default" name="submitModal" data-dismiss="modal" onclick="editCasa()" value="EditarCasa">Salvar</button>
                         </div>
                     </div>
                 </div>
@@ -160,25 +141,22 @@
                         <h4 class="modal-title">Adicionar Novo Ambiente</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" id="formAdicAmb" method="POST" action="controller">
-                            <input type="hidden"
-                                   name="nomePageHandle"
-                                   value="com.juliano.automacaoresidencial.PageHandlers.IndexHandle" />
+                        <div class="form-horizontal" id="formAdicAmb">
 
                             <input type="hidden" name="nomeIdCasa" value=""/>
 
                             <div class="form-group">
                                 <label for="nomeAmbiente" style="font-size: 1.5em">Nome:</label>                                                
-                                <input type="text" style="text-align: center" class="form-control" id="nomeAmbiente" name="nomeAmbiente" required="true">
+                                <input type="text" style="text-align: center" class="form-control" id="nomeAddAmbiente" name="nomeAmbiente" required="true">
                             </div>
                             <div class="form-group">
                                 <label for="nomeDetAmb" style="font-size: 1.5em">Detalhes:</label>
-                                <input type="text" style="text-align: center" class="form-control" id="nomeDetAmb" name="nomeDetAmb">
+                                <input type="text" style="text-align: center" class="form-control" id="nomeAddDetAmb" name="nomeDetAmb">
                             </div>
-                        </form>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Cancelar</button>
-                            <button class="btn btn-default" name="submitModal" form="formAdicAmb" value="AdicionarAmbiente">Salvar</button>
+                            <button class="btn btn-default" onclick="adicionarAmbiente(1)" data-dismiss="modal" value="AdicionarAmbiente">Salvar</button>
                         </div>
                     </div>
                 </div>
@@ -195,24 +173,19 @@
                         <h4 class="modal-title">Detalhes do Ambiente</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" id="formDetAmb" method="POST" action="controller">
-                            <input type="hidden"
-                                   name="nomePageHandle"
-                                   value="com.juliano.automacaoresidencial.PageHandlers.IndexHandle" />
-
-                            <input type="hidden" name="nomeIdAmbiente" value=""/>
+                        <form class="form-horizontal" id="formDetAmb">
 
                             <div class="form-group">
                                 <label for="nomeAmbiente" style="font-size: 1.5em">Nome:</label>                                                
-                                <input type="text" style="text-align: center" class="form-control" id="nomeAmbiente" name="nomeAmbiente" value="" required="true" disabled>
+                                <input type="text" style="text-align: center" class="form-control" id="ModalNomeAmbiente" name="nomeAmbiente" value="" required="true" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="nomeDetAmb" style="font-size: 1.5em">Detalhes:</label>
-                                <input type="text" style="text-align: center" class="form-control" id="nomeDetAmb" name="nomeDetAmb" value="" disabled>
+                                <input type="text" style="text-align: center" class="form-control" id="ModalDetAmb" name="nomeDetAmb" value="" disabled>
                             </div>
                         </form>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-default" name="submitModal" form="formDetAmb" value="ExcluirAmbiente" style="float: left">Excluir</button>
+                            <button class="btn btn-default" data-dismiss="modal" value="ExcluirAmbiente" onclick="deleteAmbiente()" style="float: left">Excluir</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                         </div>
                     </div>
@@ -230,27 +203,50 @@
                         <h4 class="modal-title">Adicionar Novo Dispositivo</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" id="formAdicDisp" method="POST" action="controller">
-                            <input type="hidden"
-                                   name="nomePageHandle"
-                                   value="com.juliano.automacaoresidencial.PageHandlers.IndexHandle" />
+                        <div class="form-horizontal" id="formAdicDisp">
 
                             <input type="hidden" name="nomeIdAmbiente" value=""/>
 
                             <div class="form-group">
                                 <label for="nomeDispositivo" style="font-size: 1.5em">Nome:</label>                                                
-                                <input type="text" style="text-align: center" class="form-control" id="nomeDispositivo" name="nomeDispositivo" required="true">
+                                <input type="text" style="text-align: center" class="form-control" id="nomeAddDisp" name="nomeDispositivo" value="" required="true">
                             </div>
-                        </form>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Cancelar</button>
-                            <button class="btn btn-default" onclick="test()" value="AdicionarDispositivo">Salvar</button>
+                            <button class="btn btn-default" onclick="adicionarDispositivo()" data-dismiss="modal" value="AdicionarDispositivo">Salvar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Modal Detalhe Dispositivo-->
+        <div id="ModalContDispositivo" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content col-md-6 col-md-offset-3">
+                    <div class="modal-header" style="text-align: center">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Adicionar Novo Dispositivo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal" id="formDetDisp">
+
+                            <div class="form-group">
+                                <label for="nomeDispositivo" style="font-size: 1.5em">Nome:</label>                                                
+                                <input type="text" style="text-align: center" class="form-control" id="nomeDetDispositivo" name="nomeDispositivo" value="" required="true" disabled>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" name="submitModal" data-dismiss="modal" value="ExcluirDispositivo" onclick="deleteDispositivo()" style="float: left">Excluir</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" >Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- Modal Detalhe Dispositivo-->
         <div id="ModalDetDispositivo" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -261,20 +257,15 @@
                         <h4 class="modal-title">Adicionar Novo Dispositivo</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" id="formDetDisp" method="POST" action="controller">
-                            <input type="hidden"
-                                   name="nomePageHandle"
-                                   value="com.juliano.automacaoresidencial.PageHandlers.IndexHandle" />
-
-                            <input type="hidden" name="nomeIdDisp" value=""/>
+                        <div class="form-horizontal" id="formDetDisp">
 
                             <div class="form-group">
                                 <label for="nomeDispositivo" style="font-size: 1.5em">Nome:</label>                                                
-                                <input type="text" style="text-align: center" class="form-control" id="nomeDispositivo" name="nomeDispositivo" value="" required="true" disabled>
+                                <input type="text" style="text-align: center" class="form-control" id="nomeDetDispositivo" name="nomeDispositivo" value="" required="true" disabled>
                             </div>
-                        </form>
+                        </div>
                         <div class="modal-footer">
-                            <button class="btn btn-default" name="submitModal" form="formDetDisp" value="ExcluirDispositivo" style="float: left">Excluir</button>
+                            <button class="btn btn-default" name="submitModal" data-dismiss="modal" value="ExcluirDispositivo" onclick="deleteDispositivo()" style="float: left">Excluir</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal" >Fechar</button>
                         </div>
                     </div>

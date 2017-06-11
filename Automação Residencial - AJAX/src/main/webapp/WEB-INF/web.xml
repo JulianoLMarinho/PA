@@ -12,9 +12,33 @@
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.juliano.automacaoresidencial.Core.Controller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CasaCore</servlet-name>
+        <servlet-class>com.juliano.automacaoresidencial.Core.CasaCore</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AmbienteCore</servlet-name>
+        <servlet-class>com.juliano.automacaoresidencial.Core.AmbienteCore</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DispositivoCore</servlet-name>
+        <servlet-class>com.juliano.automacaoresidencial.Core.DispositivoCore</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/controller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CasaCore</servlet-name>
+        <url-pattern>/casacore</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AmbienteCore</servlet-name>
+        <url-pattern>/ambientecore</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispositivoCore</servlet-name>
+        <url-pattern>/dispositivocore</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

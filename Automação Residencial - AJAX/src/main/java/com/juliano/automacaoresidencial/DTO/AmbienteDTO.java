@@ -5,6 +5,7 @@
  */
 package com.juliano.automacaoresidencial.DTO;
 
+import com.google.gson.Gson;
 import com.juliano.automacaoresidencial.DAO.AmbienteDAO;
 import com.juliano.automacaoresidencial.Objetos.Ambiente;
 import java.util.ArrayList;
@@ -56,5 +57,10 @@ public class AmbienteDTO {
     
     public boolean excluirPorAmbiente(int id_ambiente){
         return ambientes.doDeletebyAmb(id_ambiente);
+    }
+    
+    public static Ambiente fromJson(String json){
+        Gson gson = new Gson();
+        return gson.fromJson(json, Ambiente.class);
     }
 }
