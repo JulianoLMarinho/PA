@@ -5,7 +5,6 @@
  */
 package com.juliano.automacaoresidencial.DAO;
 
-import com.sun.org.apache.bcel.internal.util.ClassPath;
 import java.sql.Connection;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;

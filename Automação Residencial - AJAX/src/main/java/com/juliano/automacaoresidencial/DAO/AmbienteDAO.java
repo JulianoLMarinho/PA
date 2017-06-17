@@ -64,7 +64,7 @@ public class AmbienteDAO extends BaseDAO{
         try {
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(
-               "SELECT * FROM \"ambiente\" WHERE casa_id=?;");
+               "SELECT * FROM \"ambiente\" WHERE casa_id=? ORDER BY \"nome\" ASC;");
             pstmt.setInt(1, 1);
             pstmt.execute();
             ResultSet rst = pstmt.executeQuery();

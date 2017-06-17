@@ -95,7 +95,7 @@ public class IndexHandle implements IFTratadorDePaginas {
 
                 case "AdicionarDispositivo":
                     Dispositivo novoDispositivo = new Dispositivo();
-                    novoDispositivo.setAll(request.getParameter("nomeDispositivo"), Integer.parseInt(request.getParameter("nomeIdAmbiente")));
+                    //novoDispositivo.setAll(request.getParameter("nomeDispositivo"), Integer.parseInt(request.getParameter("nomeIdAmbiente")));
                     dispositivo.inserirDispositivo(novoDispositivo);
                     break;
 

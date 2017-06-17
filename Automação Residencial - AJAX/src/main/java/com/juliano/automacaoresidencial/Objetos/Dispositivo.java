@@ -12,11 +12,21 @@ import com.google.gson.Gson;
  * @author juliano
  */
 public class Dispositivo {
+
     int id;
     String nome;
     int id_ambiente;
-    
-        public int getId() {
+    String arquivojs;
+
+    public String getArquivojs() {
+        return arquivojs;
+    }
+
+    public void setArquivojs(String arquivojs) {
+        this.arquivojs = arquivojs;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -39,26 +49,27 @@ public class Dispositivo {
     public void setId_ambiente(int id_ambiente) {
         this.id_ambiente = id_ambiente;
     }
-    
-    public void setAll(int id, String nome, int id_ambiente){
+
+    public void setAll(int id, String nome, int id_ambiente, String arquivojs) {
         this.id = id;
         this.nome = nome;
         this.id_ambiente = id_ambiente;
+        this.arquivojs = arquivojs;
     }
-    
-    public void setAll(String nome, int id_ambiente){
+
+    public void setAll(String nome, int id_ambiente, String arquivojs) {
         this.nome = nome;
         this.id_ambiente = id_ambiente;
+        this.arquivojs = arquivojs;
     }
-    
-    public String toJason(){
+
+    public String toJason() {
         Gson gson = new Gson();
         return gson.toJson(this);
     }
-    
-    public static Dispositivo fromJson(String json){
+
+    public static Dispositivo fromJson(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, Dispositivo.class);
     }
 }
-

@@ -24,6 +24,7 @@ public class DispositivoDAO extends BaseDAO{
                "INSERT INTO \"dispositivo\" (\"nome\", \"id_ambiente\") VALUES (?, ?) RETURNING \"id\"");
             pstmt.setString(1, novoDispositivo.getNome());
             pstmt.setInt(2, novoDispositivo.getId_ambiente());
+            pstmt.setString(3, novoDispositivo.getArquivojs());
             ResultSet rst = pstmt.executeQuery();
             rst.next();
             novoDispositivo.setId(rst.getInt("id"));
@@ -39,14 +40,14 @@ public class DispositivoDAO extends BaseDAO{
         try {
             Connection con = getConnection();
             PreparedStatement pstmt = con.prepareStatement(
-               "SELECT * FROM \"dispositivo\" WHERE id_ambiente=?;");
+               "SELECT * FROM \"dispositivo\" WHERE id_ambiente=? ORDER BY \"nome\" ASC;");
             pstmt.setInt(1, id);
             pstmt.execute();
             ResultSet rst = pstmt.executeQuery();
             int i = 0;
             while(rst.next()){
                 Dispositivo temp = new Dispositivo();
-                temp.setAll(rst.getInt("id"), rst.getString("nome"), rst.getInt("id_ambiente"));
+                temp.setAll(rst.getInt("id"), rst.getString("nome"), rst.getInt("id_ambiente"), rst.getString("arquivojs"));
                 nome.add(temp);
             }
             //System.out.println(nome);
@@ -69,7 +70,7 @@ public class DispositivoDAO extends BaseDAO{
             pstmt.execute();
             ResultSet rst = pstmt.executeQuery();
             rst.next();
-            dispositivoSelecionado.setAll(rst.getInt("id"), rst.getString("nome"), rst.getInt("id_ambiente"));
+            dispositivoSelecionado.setAll(rst.getInt("id"), rst.getString("nome"), rst.getInt("id_ambiente"), rst.getString("arquivojs"));
             con.close();
         } catch (Exception e) {
             e.printStackTrace();

@@ -11,6 +11,7 @@ function main() {
     $('#buttonDetAmb').prop('disabled', true);
     $('#buttonAddDisp').prop('disabled', true);
     $('#buttonDetDisp').prop('disabled', true);
+    $('#buttonContDisp').prop('disabled', true);
     $('#listDispositivos').prop('disabled', true);
     $('#listAmbientes').change(function () {
         var val = $("#listAmbientes option:selected")[0].value;
@@ -20,7 +21,7 @@ function main() {
     $('#listDispositivos').change(function () {
         var val = $("#listDispositivos option:selected")[0].value;
         selecionaDispositivo(val);
-    });
+    });     
 }
 
 function ambienteSubmit(n) {
@@ -82,7 +83,9 @@ function repopulateAmbiente() {
 
 function repopulateDispositivo() {
     $('#buttonDetDisp').prop('disabled', true);
+    $('#buttonContDisp').prop('disabled', true);
     $('#buttonDetDisp').addClass('disabled');
+    $('#buttonContDisp').addClass('disabled');
     $('#listDispositivos').empty();
     document.getElementById("nomeAddDisp").value = "";
     var select = document.getElementById('listDispositivos');
@@ -107,11 +110,15 @@ function selecionaDispositivo(dispositivo){
     if(dispositivo == 0){
         $('#buttonDetDisp').prop('disabled', true);
         $('#buttonDetDisp').addClass('disabled');
+        $('#buttonContDisp').prop('disabled', true);
+        $('#buttonContDisp').addClass('disabled');
     } else {
         dispositivoSelecionado(dispositivo);
         $('#buttonDetDisp').removeClass('disabled');
         $('#buttonDetDisp').prop('disabled', false);
-    }
+        $('#buttonContDisp').removeClass('disabled');
+        $('#buttonContDisp').prop('disabled', false);
+    }      
 }
 
 function selecionaAmbiente(ambiente) {
@@ -230,8 +237,14 @@ function dispositivoSelecionado(idDispositivo){
     PedidoAJAX(dispositivo, loadModalDetDisp, "dispositivocore");
 }
 
-function loadModalDetDisp(dispositivo){
+function loadModalDetDisp(dispositivo) {
     document.getElementById("nomeDetDispositivo").value = dispositivo.nome;
+    console.log(dispositivo);
+    $.getScript('js_dispositivos/'+dispositivo.arquivojs, function ()
+    {
+        iniciar(dispositivo.id);
+        
+    });
 }
 
 function adicionarDispositivo(){

@@ -7,7 +7,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/style.css" /> 
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />         
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" /> 
+        <link rel="stylesheet" type="text/css" href="bootstrap-toggle-master/css/bootstrap-toggle.min.css"/>
     </head>
     <body>        
         <div class="container">
@@ -189,7 +190,7 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                         </div>
                     </div>
-                </div>
+                </div>    
             </div>
         </div>
 
@@ -221,26 +222,19 @@
             </div>
         </div>
 
-        <!-- Modal Detalhe Dispositivo-->
+        <!-- Modal Controlar Dispositivo-->
         <div id="ModalContDispositivo" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
-                <div class="modal-content col-md-6 col-md-offset-3">
+                <div class="modal-content col-md-8 col-md-offset-3">
                     <div class="modal-header" style="text-align: center">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Adicionar Novo Dispositivo</h4>
+                        <h4 class="modal-title">Controlar Dispositivo</h4>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-horizontal" id="formDetDisp">
-
-                            <div class="form-group">
-                                <label for="nomeDispositivo" style="font-size: 1.5em">Nome:</label>                                                
-                                <input type="text" style="text-align: center" class="form-control" id="nomeDetDispositivo" name="nomeDispositivo" value="" required="true" disabled>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-default" name="submitModal" data-dismiss="modal" value="ExcluirDispositivo" onclick="deleteDispositivo()" style="float: left">Excluir</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal" >Fechar</button>
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                                <label for="estadoDispositivo" style="font-size: 1.5em">Estado do Dispositivo:</label>                                                
+                                <input style="float: right" data-width="100" id="estadoDispositivo" type="checkbox" checked data-toggle="toggle" data-on="Ligado" data-off="Desligado" data-onstyle="success" data-offstyle="danger">
                         </div>
                     </div>
                 </div>
@@ -278,6 +272,7 @@
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap-toggle-master/js/bootstrap-toggle.min.js"></script>
     <script src="js/functions.js"></script>
 </body>
 </html>
