@@ -5,7 +5,6 @@
         <meta charset="UTF-8">
         <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="js/websocket_simples.js"></script>
-        <script src="js/jquery-3.2.1.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="bootstrap-toggle-master/js/bootstrap-toggle.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,16 +13,26 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" /> 
         <link rel="stylesheet" type="text/css" href="bootstrap-toggle-master/css/bootstrap-toggle.min.css"/>
     </head>
-    
+
     <body>
         <div class="container">
             <div class="row">                
                 <div class="topo col-md-6 col-md-offset-3" style="border-radius: 4px 4px 0 0">
                     <h1 style="color: #FFFFFF"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></h1>
                 </div>
+
                 <div class="col-md-6 col-md-offset-3">
+                    <div class="form-group" style="text-align: center">
+                        <label for="nomeCasa" style="font-size: 2.3em">Alarme de CO</label>
+                    </div>
+                    <h3 id="ativado" style="text-align: center; color: green">O Alarme está ATIVADO</h3>
+                    <h3 id="desativado" style="text-align: center; color: red">O Alarme está DESATIVADO</h3>
                     <div id="alarmeA" style="text-align: center; display: none"><img src="images/AlarmeA.gif"></div>
                     <div id="alarmeD" style="text-align: center; display: "><img src="images/alarmeD.png"></div>
+                    <div class="row" style="margin: 0; text-align: center">
+                        <div class="btn btn-warning col-md-offset-2 col-md-8 .col-xs-6" style="margin-bottom: 10px" onclick="desativarAlarme()">Desativar Alarme</div>
+                        <div class="btn btn-primary col-md-offset-2 col-md-8 .col-xs-6" onclick="ativarAlarme()">Ativar Alarme</div>
+                        </div>
                 </div>
             </div>
         </div>        
